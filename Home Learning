@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Test Paper</title>
+<style>
+    body {
+        font-family: Arial, sans-serif;
+        margin: 0;
+        padding: 0;
+        background-color: #f2f2f2;
+    }
+    .container {
+        max-width: 800px;
+        margin: 20px auto;
+        padding: 20px;
+        background-color: #fff;
+        border-radius: 8px;
+        box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    }
+    input[type="text"],
+    textarea {
+        width: calc(100% - 20px);
+        padding: 10px;
+        margin-bottom: 10px;
+        border: 1px solid #ccc;
+        border-radius: 4px;
+        resize: none;
+    }
+    button {
+        width: 100%;
+        padding: 10px;
+        background-color: #4CAF50;
+        color: #fff;
+        border: none;
+        border-radius: 4px;
+        cursor: pointer;
+    }
+    button:hover {
+        background-color: #45a049;
+    }
+    #savedAnswers {
+        margin-top: 20px;
+    }
+    .qa {
+        padding: 10px;
+        margin-bottom: 10px;
+        border: 1px solid #ccc;
+        border-radius: 4px;
+    }
+    .qa hr {
+        margin-top: 10px;
+        margin-bottom: 10px;
+    }
+</style>
+</head>
+<body>
+
+<div class="container">
+    <h2>Enter Test Paper</h2>
+    <input type="text" id="questionInput" placeholder="Enter question...">
+    <textarea id="answerTextarea" placeholder="Enter answer..."></textarea>
+    <button onclick="saveQuestionAndAnswer()">Save Question and Answer</button>
+
+    <div id="savedAnswers">
+        <h2>Saved Questions and Answers</h2>
+        <div id="savedAnswersContent"></div>
+    </div>
+</div>
+
+<script>
+    function saveQuestionAndAnswer() {
+        var question = document.getElementById("questionInput").value;
+        var answer = document.getElementById("answerTextarea").value;
+        if (question.trim() !== "" && answer.trim() !== "") {
+            var savedAnswersContent = document.getElementById("savedAnswersContent");
+            var qaDiv = document.createElement("div");
+            qaDiv.classList.add("qa");
+            qaDiv.innerHTML = "<strong>Question:</strong> " + question + "<br><strong>Answer:</strong> " + answer + "<hr>";
+            savedAnswersContent.appendChild(qaDiv);
+            alert("Question and answer saved successfully!");
+            clearInputs();
+        } else {
+            alert("Please enter both question and answer before saving.");
+        }
+    }
+
+    function clearInputs() {
+        document.getElementById("questionInput").value = "";
+        document.getElementById("answerTextarea").value = "";
+    }
+</script>
+
+</body>
+</html>
